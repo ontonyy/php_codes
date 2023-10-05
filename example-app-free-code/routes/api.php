@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/hello', 'GitLabApiController@hello')->name('/hello');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
+    Route::get('/gitlab/projects', 'GitLabApiController@getProjects')->name('projects');
 });
